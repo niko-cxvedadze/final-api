@@ -5,8 +5,8 @@ import { hash, compare } from 'bcryptjs';
 import {
   HttpException,
   Injectable,
-  UnauthorizedException,
   HttpStatus,
+  UnauthorizedException,
 } from '@nestjs/common';
 
 import { Users } from '../users/users.entity';
@@ -62,26 +62,41 @@ export class AuthService {
     const user = await this.usersService.findOne(data.email);
 
     if (!user) {
-      const createdUser = await this.usersService.createUser({
+      const createdUser = await this.usersService.create({
         email: data.email,
         sub_id: data.sub_id,
         first_name: data.firstName,
         last_name: data.lastName,
       });
-      return this.login(createdUser);
+      return this.createCredentials(createdUser);
     }
 
     if (user.id === data.sub_id) {
-      return this.login(user);
+      return this.createCredentials(user);
     }
   }
 
-  async login(user: Users) {
+  async createCredentials(user: Users) {
     const payload = { email: user.email, id: user.id };
 
-    return {
+    const tokens = {
       access_token: this.jwtService.sign(payload),
+      refresh_token: this.jwtService.sign(payload, { expiresIn: '4w' }),
     };
+
+    await this.usersService.updateRefreshToken({
+      id: user.id,
+      refresh_token: tokens.refresh_token,
+    });
+
+    return tokens;
+  }
+
+  async logout(id: string) {
+    return await this.usersService.updateRefreshToken({
+      id,
+      refresh_token: null,
+    });
   }
 
   async localRegister(data: RegisterUserDto) {
@@ -89,7 +104,7 @@ export class AuthService {
 
     const hashedPassword = await this.hashPassword(data.password);
 
-    const user = await this.usersService.createUser({
+    const user = await this.usersService.create({
       first_name,
       last_name,
       email,
@@ -100,6 +115,6 @@ export class AuthService {
       throw new HttpException('create user error', HttpStatus.BAD_REQUEST);
     }
 
-    return this.login(user);
+    return this.createCredentials(user);
   }
 }

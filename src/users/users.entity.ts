@@ -4,7 +4,7 @@ import { BaseEntity } from '../shared/base-entity';
 
 import { Orders } from '../order/order.entity';
 
-enum UserRole {
+export enum UserRole_Enum {
   CUSTOMER = 'customer',
   WORKER = 'worker',
 }
@@ -31,10 +31,10 @@ export class Users extends BaseEntity {
 
   @Column({
     type: 'enum',
-    enum: UserRole,
+    enum: UserRole_Enum,
     nullable: true,
   })
-  role: UserRole;
+  role: UserRole_Enum;
 
   @OneToMany(() => Orders, (orders) => orders.owner, {
     cascade: true,
@@ -46,4 +46,7 @@ export class Users extends BaseEntity {
 
   @Column({ nullable: true })
   sub_id: string;
+
+  @Column({ nullable: true })
+  refresh_token: string;
 }

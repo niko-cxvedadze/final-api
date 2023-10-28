@@ -1,7 +1,9 @@
 import { Repository } from 'typeorm';
-import { Users } from './users.entity';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { Users } from './users.entity';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 type CreateUserArgs = {
   first_name: string;
@@ -9,6 +11,11 @@ type CreateUserArgs = {
   email: string;
   password?: string;
   sub_id?: string;
+};
+
+type UpdateRefreshTokenArgs = {
+  id: string;
+  refresh_token?: string;
 };
 
 @Injectable()
@@ -23,7 +30,7 @@ export class UsersService {
     return user;
   }
 
-  async createUser({
+  async create({
     email,
     first_name,
     last_name,
@@ -39,4 +46,21 @@ export class UsersService {
     });
     return await this.usersRepository.save(user);
   }
+
+  async updateRefreshToken(data: UpdateRefreshTokenArgs) {
+    const { id, refresh_token = null } = data;
+
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+
+    user.refresh_token = refresh_token;
+    await this.usersRepository.save(user);
+
+    return user;
+  }
+
+  async update(id: string, data: UpdateUserDto) {}
 }

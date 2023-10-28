@@ -13,7 +13,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
   catch(exception: unknown, host: ArgumentsHost): void {
     const { httpAdapter } = this.httpAdapterHost;
-
     const ctx = host.switchToHttp();
 
     const httpStatus =
@@ -21,8 +20,15 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const responseBody = {
+    const message =
+      exception instanceof HttpException
+        ? //@ts-ignore
+          exception.getResponse()?.message
+        : '';
+
+    const responseBody: any = {
       statusCode: httpStatus,
+      message,
       path: httpAdapter.getRequestUrl(ctx.getRequest()),
     };
 
