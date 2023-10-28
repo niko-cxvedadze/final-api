@@ -15,8 +15,13 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Public()
   @Post('login')
-  async localLogin(@Req() req) {
+  async localLogin(@Req() req: any) {
     return this.authService.createCredentials(req.user);
+  }
+
+  @Get('logout')
+  async logout(@Req() req: any) {
+    return this.authService.logout(req.user.id);
   }
 
   @Public()
