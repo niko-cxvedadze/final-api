@@ -33,7 +33,6 @@
     "class-validator": "^0.14.0",
     "dotenv": "^16.3.1",
     "jsonwebtoken": "^9.0.2",
-    "jwt-decode": "^4.0.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",

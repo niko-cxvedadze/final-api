@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { verify, decode } from 'jsonwebtoken';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
 import * as process from 'process';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
+import { JwtPayload } from 'jsonwebtoken';
 import {
   HttpException,
   Injectable,
@@ -20,7 +19,6 @@ import { GoogleUser } from './auth.types';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateTokensDto } from './dto/update-tokens.dto';
 import { jwtConstants } from './auth.constants';
-import { json } from 'express';
 
 @Injectable()
 export class AuthService {
