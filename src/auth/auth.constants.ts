@@ -1,4 +1,4 @@
 export const jwtConstants = {
-  secret:
-    'DO NOT USE THIS VALUE. INSTEAD, CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.',
+  accessTokenSecret: 'access_token_secret',
+  refreshTokenSecret: 'refresh_token_secret',
 };

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { verify, decode } from 'jsonwebtoken';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 import * as process from 'process';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
@@ -9,11 +11,16 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 
+import { JwtUserPayload } from './auth.types';
+
 import { Users } from '../users/users.entity';
 import { UsersService } from '../users/users.service';
 import { GoogleUser } from './auth.types';
 
 import { RegisterUserDto } from './dto/register-user.dto';
+import { UpdateTokensDto } from './dto/update-tokens.dto';
+import { jwtConstants } from './auth.constants';
+import { json } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -31,7 +38,7 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersService.findOne(email);
+    const user = await this.usersService.findOne({ email });
 
     const passwordEqual = await this.comparePassword(password, user.password);
 
@@ -59,7 +66,7 @@ export class AuthService {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    const user = await this.usersService.findOne(data.email);
+    const user = await this.usersService.findOne({ email: data.email });
 
     if (!user) {
       const createdUser = await this.usersService.create({
@@ -68,20 +75,23 @@ export class AuthService {
         first_name: data.firstName,
         last_name: data.lastName,
       });
-      return this.createCredentials(createdUser);
+      return this.createTokens(createdUser);
     }
 
     if (user.id === data.sub_id) {
-      return this.createCredentials(user);
+      return this.createTokens(user);
     }
   }
 
-  async createCredentials(user: Users) {
+  async createTokens(user: Users) {
     const payload = { email: user.email, id: user.id };
 
     const tokens = {
       access_token: this.jwtService.sign(payload),
-      refresh_token: this.jwtService.sign(payload, { expiresIn: '4w' }),
+      refresh_token: this.jwtService.sign(payload, {
+        expiresIn: '4w',
+        secret: jwtConstants.refreshTokenSecret,
+      }),
     };
 
     await this.usersService.updateRefreshToken({
@@ -90,6 +100,41 @@ export class AuthService {
     });
 
     return tokens;
+  }
+
+  async updateTokens(data: UpdateTokensDto) {
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+
+    let decodedToken: JwtPayload & JwtUserPayload;
+
+    try {
+      decodedToken = this.jwtService.verify(data.refresh_token, {
+        secret: jwtConstants.refreshTokenSecret,
+      });
+    } catch {
+      throw new HttpException(
+        { message: 'invalid refresh_token' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    if (decodedToken.exp < currentTimestamp) {
+      throw new HttpException(
+        { message: 'refresh_token is expired' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const user = await this.usersService.findOne({ id: decodedToken.id });
+
+    if (user.refresh_token === data.refresh_token) {
+      return this.createTokens(user);
+    } else {
+      throw new HttpException(
+        { message: 'invalid refresh_token' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   async logout(id: string) {
@@ -115,6 +160,6 @@ export class AuthService {
       throw new HttpException('create user error', HttpStatus.BAD_REQUEST);
     }
 
-    return this.createCredentials(user);
+    return this.createTokens(user);
   }
 }

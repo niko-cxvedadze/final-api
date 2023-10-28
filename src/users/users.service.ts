@@ -25,8 +25,8 @@ export class UsersService {
     private usersRepository: Repository<Users>,
   ) {}
 
-  async findOne(email: string): Promise<Users> {
-    const user = await this.usersRepository.findOne({ where: { email } });
+  async findOne(criteria: Partial<Users>): Promise<Users> {
+    const user = await this.usersRepository.findOne({ where: criteria });
     return user;
   }
 
