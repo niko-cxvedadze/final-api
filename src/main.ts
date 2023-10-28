@@ -1,10 +1,18 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-
+import { config } from 'dotenv';
+import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe, BadRequestException } from '@nestjs/common';
+
+import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './shared/all-exceptions-filter';
+
+config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const httpAdapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -19,4 +27,5 @@ async function bootstrap() {
   );
   await app.listen(3000);
 }
+
 bootstrap();

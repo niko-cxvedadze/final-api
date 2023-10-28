@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 import { BaseEntity } from '../shared/base-entity';
 
@@ -10,21 +10,21 @@ enum UserRole {
 }
 
 @Entity()
+@Unique(['email'])
+@Unique(['sub_id'])
+@Unique(['phone_number'])
 export class Users extends BaseEntity {
   @Column()
-  firstName: string;
+  first_name: string;
 
   @Column()
-  lastName: string;
+  last_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone_number: string;
 
   @Column()
   email: string;
-
-  @Column()
-  password: string;
 
   @Column({ default: false })
   verified: boolean;
@@ -32,6 +32,7 @@ export class Users extends BaseEntity {
   @Column({
     type: 'enum',
     enum: UserRole,
+    nullable: true,
   })
   role: UserRole;
 
@@ -39,4 +40,10 @@ export class Users extends BaseEntity {
     cascade: true,
   })
   orders: Orders[];
+
+  @Column({ nullable: true })
+  password: string;
+
+  @Column({ nullable: true })
+  sub_id: string;
 }
