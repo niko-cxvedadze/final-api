@@ -10,7 +10,6 @@ type CreateUserArgs = {
   last_name: string;
   email: string;
   password?: string;
-  sub_id?: string;
 };
 
 type UpdateRefreshTokenArgs = {
@@ -35,14 +34,12 @@ export class UsersService {
     first_name,
     last_name,
     password = null,
-    sub_id = null,
   }: CreateUserArgs) {
     const user = this.usersRepository.create({
       first_name,
       last_name,
       email,
       password,
-      sub_id,
     });
     return await this.usersRepository.save(user);
   }

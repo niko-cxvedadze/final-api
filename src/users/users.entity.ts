@@ -11,7 +11,6 @@ export enum UserRole_Enum {
 
 @Entity()
 @Unique(['email'])
-@Unique(['sub_id'])
 @Unique(['phone_number'])
 export class Users extends BaseEntity {
   @Column()
@@ -43,9 +42,6 @@ export class Users extends BaseEntity {
 
   @Column({ nullable: true })
   password: string;
-
-  @Column({ nullable: true })
-  sub_id: string;
 
   @Column({ nullable: true })
   refresh_token: string;

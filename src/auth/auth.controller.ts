@@ -1,4 +1,3 @@
-import { AuthGuard } from '@nestjs/passport';
 import { Controller, Post, UseGuards, Get, Req, Body } from '@nestjs/common';
 
 import { Public } from 'src/shared/decorators/public.decorator';
@@ -35,17 +34,5 @@ export class AuthController {
   @Post('update-tokens')
   updateTokens(@Body() updateTokensDto: UpdateTokensDto) {
     return this.authService.updateTokens(updateTokensDto);
-  }
-
-  @Public()
-  @UseGuards(AuthGuard('google'))
-  @Get('google')
-  async googleAuth(@Req() req: any) {}
-
-  @Public()
-  @UseGuards(AuthGuard('google'))
-  @Get('google/redirect')
-  googleAuthRedirect(@Req() req: any) {
-    return this.authService.googleLogin(req.user);
   }
 }

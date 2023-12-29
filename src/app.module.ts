@@ -1,7 +1,5 @@
-import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
@@ -12,17 +10,15 @@ import { Users } from './users/users.entity';
 import { Orders } from './order/order.entity';
 import { AuthModule } from './auth/auth.module';
 
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5434,
-      username: 'root',
-      password: 'root',
-      database: 'inwork',
+      host: 'mel.db.elephantsql.com',
+      port: 5432,
+      username: 'nggcsoka',
+      password: '2YB6q0-ZUnHGl8U1Z7p4yOexaxKEP8Ga',
+      database: 'nggcsoka',
       entities: [Users, Orders],
       synchronize: true,
       logging: true,
@@ -33,12 +29,5 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
-  ],
 })
 export class AppModule {}

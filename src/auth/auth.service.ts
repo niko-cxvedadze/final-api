@@ -14,7 +14,6 @@ import { JwtUserPayload } from './auth.types';
 
 import { Users } from '../users/users.entity';
 import { UsersService } from '../users/users.service';
-import { GoogleUser } from './auth.types';
 
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateTokensDto } from './dto/update-tokens.dto';
@@ -45,40 +44,6 @@ export class AuthService {
       return result;
     }
     return null;
-  }
-
-  async isVerifiedGoogleUser(sub_id: string, accessToken: string) {
-    const resp = await axios.get(
-      `${process.env.GOOGLE_API_ENDPOINT}/oauth2/v3/tokeninfo?access_token=${accessToken}`,
-    );
-    return resp.data.sub === sub_id;
-  }
-
-  async googleLogin(data: GoogleUser) {
-    const verified = await this.isVerifiedGoogleUser(
-      data.sub_id,
-      data.accessToken,
-    );
-
-    if (!verified) {
-      throw new UnauthorizedException('Unauthorized');
-    }
-
-    const user = await this.usersService.findOne({ email: data.email });
-
-    if (!user) {
-      const createdUser = await this.usersService.create({
-        email: data.email,
-        sub_id: data.sub_id,
-        first_name: data.firstName,
-        last_name: data.lastName,
-      });
-      return this.createTokens(createdUser);
-    }
-
-    if (user.id === data.sub_id) {
-      return this.createTokens(user);
-    }
   }
 
   async createTokens(user: Users) {
@@ -145,7 +110,7 @@ export class AuthService {
   async localRegister(data: RegisterUserDto) {
     const { email, password, first_name, last_name } = data;
 
-    const hashedPassword = await this.hashPassword(data.password);
+    const hashedPassword = await this.hashPassword(password);
 
     const user = await this.usersService.create({
       first_name,
