@@ -2,8 +2,6 @@ import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 import { BaseEntity } from '../shared/base-entity';
 
-import { Orders } from '../order/order.entity';
-
 export enum UserRole_Enum {
   CUSTOMER = 'customer',
   WORKER = 'worker',
@@ -34,11 +32,6 @@ export class Users extends BaseEntity {
     nullable: true,
   })
   role: UserRole_Enum;
-
-  @OneToMany(() => Orders, (orders) => orders.owner, {
-    cascade: true,
-  })
-  orders: Orders[];
 
   @Column({ nullable: true })
   password: string;
