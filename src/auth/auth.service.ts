@@ -3,12 +3,7 @@ import * as process from 'process';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
 import { JwtPayload } from 'jsonwebtoken';
-import {
-  HttpException,
-  Injectable,
-  HttpStatus,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 
 import { JwtUserPayload } from './auth.types';
 

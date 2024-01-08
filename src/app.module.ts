@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { AppService } from './app.service';
 
 import { Users } from './users/users.entity';
 import { AuthModule } from './auth/auth.module';
@@ -14,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'mel.db.elephantsql.com',
       port: 5432,
       username: 'nggcsoka',
-      password: '2YB6q0-ZUnHGl8U1Z7p4yOexaxKEP8Ga',
+      password: 'EZApzNgZT_ADT8eCLDguOTHrIqmJlW2T',
       database: 'nggcsoka',
       entities: [Users],
       synchronize: true,
@@ -23,6 +24,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     AuthModule,
   ],
+  providers: [AppService],
   controllers: [AppController],
 })
 export class AppModule {}
