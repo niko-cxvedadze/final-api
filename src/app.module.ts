@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AppService } from './app.service';
 
 import { Users } from './users/users.entity';
+import { Product } from './product/product.entity';
 import { ProductCategory } from './product-category/product-category.entity';
 
 import { AuthModule } from './auth/auth.module';
@@ -21,7 +22,7 @@ import { ProductCategoryModule } from './product-category/product-category.modul
       username: 'root',
       password: 'root',
       database: 'final',
-      entities: [Users, ProductCategory],
+      entities: [Users, ProductCategory, Product],
       synchronize: true,
       logging: true,
     }),
