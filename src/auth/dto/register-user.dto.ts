@@ -6,6 +6,9 @@ export class RegisterUserDto {
   @IsString()
   last_name: string;
   @IsString()
+  @Length(9, 9)
+  phone_number: string;
+  @IsString()
   @Length(8, 24)
   password: string;
   @IsEmail()

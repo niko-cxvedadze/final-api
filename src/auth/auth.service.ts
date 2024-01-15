@@ -1,5 +1,3 @@
-import axios from 'axios';
-import * as process from 'process';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
 import { JwtPayload } from 'jsonwebtoken';
@@ -109,7 +107,7 @@ export class AuthService {
   }
 
   async localRegister(data: RegisterUserDto) {
-    const { email, password, first_name, last_name } = data;
+    const { email, password, first_name, last_name, phone_number } = data;
 
     const hashedPassword = await this.hashPassword(password);
 
@@ -118,6 +116,7 @@ export class AuthService {
       last_name,
       email,
       password: hashedPassword,
+      phone_number,
     });
 
     if (!user) {

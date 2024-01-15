@@ -4,7 +4,7 @@ import { BaseEntity } from '../shared/base-entity';
 
 export enum UserRole_Enum {
   CUSTOMER = 'customer',
-  WORKER = 'worker',
+  ADMIN = 'admin',
 }
 
 @Entity()
@@ -30,6 +30,7 @@ export class Users extends BaseEntity {
     type: 'enum',
     enum: UserRole_Enum,
     nullable: true,
+    default: UserRole_Enum.CUSTOMER,
   })
   role: UserRole_Enum;
 
