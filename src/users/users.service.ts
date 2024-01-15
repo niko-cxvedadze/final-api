@@ -1,5 +1,9 @@
 import { Repository } from 'typeorm';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Users } from './users.entity';
@@ -43,7 +47,12 @@ export class UsersService {
       password,
       phone_number,
     });
-    return await this.usersRepository.save(user);
+    try {
+      const createdUser = await this.usersRepository.save(user);
+      return createdUser;
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   async updateRefreshToken(data: UpdateRefreshTokenArgs) {
