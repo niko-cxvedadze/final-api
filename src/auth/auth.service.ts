@@ -42,7 +42,13 @@ export class AuthService {
   }
 
   async createTokens(user: Users) {
-    const payload = { email: user.email, id: user.id };
+    const payload = {
+      email: user.email,
+      id: user.id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      phone_number: user.phone_number,
+    };
 
     const tokens = {
       access_token: this.jwtService.sign(payload),
