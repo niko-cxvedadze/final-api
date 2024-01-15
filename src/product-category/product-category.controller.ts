@@ -1,5 +1,14 @@
-import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
+import {
+  Post,
+  Body,
+  Get,
+  Delete,
+  Param,
+  UseGuards,
+  Controller,
+} from '@nestjs/common';
 import { ProductCategoryService } from './product-category.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 import { CreateProductCategoryDto } from './dtos/create-product-category.dto';
 
@@ -10,6 +19,7 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() body: CreateProductCategoryDto) {
     return this.productCategoryService.create(body);
   }
@@ -20,6 +30,7 @@ export class ProductCategoryController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async delete(@Param('id') id: string) {
     return this.productCategoryService.delete(id);
   }
