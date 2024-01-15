@@ -12,11 +12,11 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      port: 5432,
-      host: 'tyke.db.elephantsql.com',
-      password: 'n2YVzOIdaMRRtU-RO77HZvOA0_YZfgvC',
-      username: 'hildzswu',
-      database: 'hildzswu',
+      host: 'localhost',
+      port: 5434,
+      username: 'root',
+      password: 'root',
+      database: 'final',
       entities: [Users],
       synchronize: true,
       logging: true,

@@ -3,7 +3,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Users } from './users.entity';
-import { UpdateUserDto } from './dtos/update-user.dto';
 
 type CreateUserArgs = {
   first_name: string;
@@ -58,6 +57,4 @@ export class UsersService {
 
     return user;
   }
-
-  async update(id: string, data: UpdateUserDto) {}
 }
