@@ -10,3 +10,7 @@ export class CreateProductDto {
   @IsBase64()
   image: string;
 }
+
+export class CreateManyProductDto {
+  products: CreateProductDto[];
+}

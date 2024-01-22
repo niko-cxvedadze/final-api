@@ -3,7 +3,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Product } from './product.entity';
-import { CreateProductDto } from './dtos/create-product.dto';
+import {
+  CreateProductDto,
+  CreateManyProductDto,
+} from './dtos/create-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -20,7 +23,34 @@ export class ProductService {
     return await this.productRepository.save(product);
   }
 
+  async createMany(body: CreateManyProductDto) {
+    const products = body.products.map((product) =>
+      this.productRepository.create({
+        ...product,
+        image: 'data:image/png;base64,' + product.image,
+      }),
+    );
+
+    return await this.productRepository.save(products);
+  }
+
   async findAll() {
     return await this.productRepository.find();
+  }
+
+  async delete(id: string) {
+    const product = await this.findOne(id);
+
+    return await this.productRepository.remove(product);
+  }
+
+  async findOne(id: string) {
+    const product = await this.productRepository.findOne({ where: { id } });
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    return product;
   }
 }
