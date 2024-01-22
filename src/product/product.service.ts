@@ -38,12 +38,6 @@ export class ProductService {
     return await this.productRepository.find();
   }
 
-  async delete(id: string) {
-    const product = await this.findOne(id);
-
-    return await this.productRepository.remove(product);
-  }
-
   async findOne(id: string) {
     const product = await this.productRepository.findOne({ where: { id } });
 
@@ -52,5 +46,15 @@ export class ProductService {
     }
 
     return product;
+  }
+  async delete(id: string) {
+    const product = await this.findOne(id);
+
+    return await this.productRepository.remove(product);
+  }
+
+  async deleteAll() {
+    const products = await this.findAll();
+    return await this.productRepository.remove(products);
   }
 }

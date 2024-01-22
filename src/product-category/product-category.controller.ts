@@ -38,6 +38,12 @@ export class ProductCategoryController {
     return this.productCategoryService.findAll();
   }
 
+  @Delete('delete-all')
+  @UseGuards(JwtAuthGuard)
+  async deleteAll() {
+    return this.productCategoryService.deleteAll();
+  }
+
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   async delete(@Param('id') id: string) {

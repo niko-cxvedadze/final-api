@@ -45,4 +45,9 @@ export class ProductCategoryService {
     const productCategory = await this.findOne(id);
     return await this.productCategoryRepository.remove(productCategory);
   }
+
+  async deleteAll() {
+    const productCategories = await this.findAll();
+    return await this.productCategoryRepository.remove(productCategories);
+  }
 }

@@ -24,16 +24,10 @@ export class ProductController {
     return this.productService.create(body);
   }
 
-  @Post()
+  @Post('many')
   @UseGuards(JwtAuthGuard)
   createMany(@Body() body: CreateManyProductDto) {
     return this.productService.createMany(body);
-  }
-
-  @Delete(':id')
-  @UseGuards(JwtAuthGuard)
-  delete(@Param('id') id: string) {
-    return this.productService.delete(id);
   }
 
   @Get()
@@ -44,5 +38,17 @@ export class ProductController {
   @Get('id')
   async findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
+  }
+
+  @Delete('delete-all')
+  @UseGuards(JwtAuthGuard)
+  deleteAll() {
+    return this.productService.deleteAll();
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  delete(@Param('id') id: string) {
+    return this.productService.delete(id);
   }
 }
