@@ -17,11 +17,11 @@ import { ProductCategoryModule } from './product-category/product-category.modul
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5434,
-      username: 'root',
-      password: 'root',
-      database: 'final',
+      host: 'manny.db.elephantsql.com',
+      port: 5432,
+      username: 'owgdbnfk',
+      password: 'wPqaKmeU50LxMC1nKTizd0G3LDmEQc2S',
+      database: 'owgdbnfk',
       entities: [Users, ProductCategory, Product],
       synchronize: true,
       logging: true,
