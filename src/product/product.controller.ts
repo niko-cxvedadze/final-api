@@ -6,13 +6,18 @@ import {
   Delete,
   UseGuards,
   Controller,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
+
 import {
   CreateProductDto,
   CreateManyProductDto,
 } from './dtos/create-product.dto';
+
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+
+import { Pagination } from 'src/shared/decorators/pagination.decorator';
 
 @Controller('product')
 export class ProductController {
@@ -31,8 +36,23 @@ export class ProductController {
   }
 
   @Get()
-  async findAll() {
-    return this.productService.findAll();
+  async findAll(
+    @Query('categoryName') categoryName: string,
+    @Query('productName') productName: string,
+    @Query('minPrice') minPrice: number,
+    @Query('maxPrice') maxPrice: number,
+    @Pagination() pagination: { page: number; pageSize: number },
+  ) {
+    const { page, pageSize } = pagination;
+
+    return this.productService.findAll(
+      page,
+      pageSize,
+      categoryName,
+      productName,
+      minPrice,
+      maxPrice,
+    );
   }
 
   @Get(':id')

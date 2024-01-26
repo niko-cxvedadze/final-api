@@ -1,4 +1,4 @@
-import { IsBase64, IsString } from 'class-validator';
+import { IsBase64, IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -9,6 +9,9 @@ export class CreateProductDto {
 
   @IsBase64()
   image: string;
+
+  @IsNumber()
+  price: number;
 }
 
 export class CreateManyProductDto {

@@ -14,6 +14,9 @@ export class Product extends BaseEntity {
   image: string;
 
   @Column()
+  price: number;
+
+  @Column()
   category_name: string;
 
   @ManyToOne(() => ProductCategory, { eager: true })

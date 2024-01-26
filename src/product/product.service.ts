@@ -34,8 +34,40 @@ export class ProductService {
     return await this.productRepository.save(products);
   }
 
-  async findAll() {
-    return await this.productRepository.find();
+  async findAll(
+    page: number = 1,
+    pageSize: number = 10,
+    categoryName?: string,
+    productName?: string,
+    minPrice?: number,
+    maxPrice?: number,
+  ): Promise<{ products: Product[]; total: number }> {
+    const query = this.productRepository.createQueryBuilder('product');
+
+    if (categoryName) {
+      query.where('product.category_name = :categoryName', { categoryName });
+    }
+
+    if (productName) {
+      query.andWhere('product.title LIKE :productName', {
+        productName: `%${productName}%`,
+      });
+    }
+
+    if (minPrice) {
+      query.andWhere('product.price >= :minPrice', { minPrice });
+    }
+
+    if (maxPrice) {
+      query.andWhere('product.price <= :maxPrice', { maxPrice });
+    }
+
+    const [products, total] = await query
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .getManyAndCount();
+
+    return { products, total };
   }
 
   async findOne(id: string) {
@@ -54,7 +86,7 @@ export class ProductService {
   }
 
   async deleteAll() {
-    const products = await this.findAll();
+    const products = await this.productRepository.find();
     return await this.productRepository.remove(products);
   }
 }
