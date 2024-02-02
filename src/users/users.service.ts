@@ -7,6 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Users } from './users.entity';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 type CreateUserArgs = {
   first_name: string;
@@ -30,7 +31,23 @@ export class UsersService {
 
   async findOne(criteria: Partial<Users>): Promise<Users> {
     const user = await this.usersRepository.findOne({ where: criteria });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
     return user;
+  }
+
+  async update(userId: string, body: UpdateUserDto) {
+    const user = await this.findOne({ id: userId });
+
+    const updatedUser = {
+      ...user,
+      ...body,
+    };
+
+    await this.usersRepository.update(userId, updatedUser);
+
+    return updatedUser;
   }
 
   async create({
