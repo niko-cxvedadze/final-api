@@ -16,6 +16,9 @@ export class Product extends BaseEntity {
   @Column()
   price: number;
 
+  @Column({ nullable: true })
+  salePrice: number;
+
   @Column()
   category_name: string;
 

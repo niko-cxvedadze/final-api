@@ -6,6 +6,7 @@ import { Product } from './product.entity';
 import {
   CreateProductDto,
   CreateManyProductDto,
+  UpdateProductDto,
 } from './dtos/create-product.dto';
 
 @Injectable()
@@ -21,6 +22,13 @@ export class ProductService {
       image: 'data:image/png;base64,' + body.image,
     });
     return await this.productRepository.save(product);
+  }
+
+  async update(body: UpdateProductDto) {
+    const product = await this.findOne(body.id);
+    const updatedProduct = { ...product, ...body };
+    await this.productRepository.update(product.id, updatedProduct);
+    return updatedProduct;
   }
 
   async createMany(body: CreateManyProductDto) {
@@ -41,6 +49,7 @@ export class ProductService {
     productName?: string,
     minPrice?: number,
     maxPrice?: number,
+    onlySales?: boolean,
   ): Promise<{ products: Product[]; total: number }> {
     const query = this.productRepository.createQueryBuilder('product');
 
@@ -60,6 +69,10 @@ export class ProductService {
 
     if (maxPrice) {
       query.andWhere('product.price <= :maxPrice', { maxPrice });
+    }
+
+    if (onlySales) {
+      query.andWhere('product.salePrice IS NOT NULL');
     }
 
     const [products, total] = await query

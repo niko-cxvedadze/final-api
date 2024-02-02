@@ -1,5 +1,6 @@
 import {
   Get,
+  Put,
   Body,
   Post,
   Param,
@@ -13,6 +14,7 @@ import { ProductService } from './product.service';
 import {
   CreateProductDto,
   CreateManyProductDto,
+  UpdateProductDto,
 } from './dtos/create-product.dto';
 
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -41,6 +43,7 @@ export class ProductController {
     @Query('productName') productName: string,
     @Query('minPrice') minPrice: number,
     @Query('maxPrice') maxPrice: number,
+    @Query('onlySales') onlySales: boolean,
     @Pagination() pagination: { page: number; pageSize: number },
   ) {
     const { page, pageSize } = pagination;
@@ -52,6 +55,7 @@ export class ProductController {
       productName,
       minPrice,
       maxPrice,
+      onlySales,
     );
   }
 
@@ -70,5 +74,11 @@ export class ProductController {
   @UseGuards(JwtAuthGuard)
   delete(@Param('id') id: string) {
     return this.productService.delete(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put()
+  update(@Body() body: UpdateProductDto) {
+    return this.productService.update(body);
   }
 }

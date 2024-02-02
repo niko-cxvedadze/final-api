@@ -1,4 +1,10 @@
-import { IsBase64, IsNumber, IsString } from 'class-validator';
+import {
+  IsBase64,
+  IsNumber,
+  IsString,
+  IsOptional,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -7,10 +13,39 @@ export class CreateProductDto {
   @IsString()
   description: string;
 
+  @IsNumber()
+  @IsOptional()
+  salePrice: number;
+
   @IsBase64()
   image: string;
 
   @IsNumber()
+  price: number;
+}
+
+export class UpdateProductDto {
+  @IsUUID()
+  id: string;
+
+  @IsString()
+  @IsOptional()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsNumber()
+  @IsOptional()
+  salePrice: number;
+
+  @IsBase64()
+  @IsOptional()
+  image: string;
+
+  @IsNumber()
+  @IsOptional()
   price: number;
 }
 
