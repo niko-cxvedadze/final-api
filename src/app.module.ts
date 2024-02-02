@@ -8,21 +8,23 @@ import { AppService } from './app.service';
 import { Users } from './users/users.entity';
 import { Product } from './product/product.entity';
 import { ProductCategory } from './product-category/product-category.entity';
+import { LikedProduct } from './liked-product/liked-product.entity';
 
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
+import { LikedProductModule } from './liked-product/liked-product.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'manny.db.elephantsql.com',
-      port: 5432,
-      username: 'owgdbnfk',
-      password: 'wPqaKmeU50LxMC1nKTizd0G3LDmEQc2S',
-      database: 'owgdbnfk',
-      entities: [Users, ProductCategory, Product],
+      host: 'localhost',
+      port: 5434,
+      username: 'root',
+      password: 'root',
+      database: 'final',
+      entities: [Users, ProductCategory, Product, LikedProduct],
       synchronize: true,
       logging: true,
     }),
@@ -30,6 +32,7 @@ import { ProductCategoryModule } from './product-category/product-category.modul
     AuthModule,
     ProductModule,
     ProductCategoryModule,
+    LikedProductModule,
   ],
   providers: [AppService],
   controllers: [AppController],

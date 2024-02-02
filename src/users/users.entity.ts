@@ -1,5 +1,4 @@
 import { Column, Entity, Unique } from 'typeorm';
-
 import { BaseEntity } from '../shared/base-entity';
 
 export enum UserRole_Enum {
