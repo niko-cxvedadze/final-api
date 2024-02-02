@@ -67,6 +67,38 @@
 			]
 		},
 		{
+			"name": "მომხმარებელი",
+			"item": [
+				{
+					"name": "ავტორიზებული მომხ. დეტალები",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/user/current-user"
+					},
+					"response": []
+				},
+				{
+					"name": "მომხ. დეტალების განახლება",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"გრიშა\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "პროდუქტები",
 			"item": [
 				{
@@ -327,12 +359,53 @@
 				}
 			],
 			"description": "ყველა ოპერაცია სრულდება user ის მომხმარებლის ჭრილში რექვესთების გამოსაყენებლად აუცილებელია ავტორიზაცია"
+		},
+		{
+			"name": "კალათა",
+			"item": [
+				{
+					"name": "ყველა პროდუქტი",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/cart"
+					},
+					"response": []
+				},
+				{
+					"name": "პროდუქტის წაშლა",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/cart/7d3ff14d-4ed3-449e-a5b8-4078d1e60d08"
+					},
+					"response": []
+				},
+				{
+					"name": "პროდუქტის დამატება",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\":\"086087aa-30a1-42fd-b0f5-8d213dbfa4f6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/cart"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWQiOiJmZTkwNTliMC0zM2ZiLTRiYjQtOTQ4Ni01YWEwNDQ5YTZiYzEiLCJmaXJzdF9uYW1lIjoibmlrb2xveiIsImxhc3RfbmFtZSI6InRza2h2ZWRhZHplIiwicGhvbmVfbnVtYmVyIjoiNTU1MTEyMjM1Iiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzA2ODcyMzg2LCJleHAiOjE3MDY4NzU5ODZ9.6gE0XQhUCSWKWjr1yC2asezG91jx-04bHDO6ZWubiZI"
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RzQGdtYWlsLmNvbSIsImlkIjoiODY3MDcxMzgtMTZlZS00MmZkLWEzOWYtMjJhZjZjMmMxZGEzIiwiZmlyc3RfbmFtZSI6Im5pa29sb3oiLCJsYXN0X25hbWUiOiJ0c2todmVkYWR6ZSIsInBob25lX251bWJlciI6IjU1NTExMjIzNiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTcwNjg3NTczMywiZXhwIjoxNzA2ODc5MzMzfQ.fjjpV7WYq5SkT_YVW_HVLE6Bk-cCgs5b-xySgaoKED4"
 		}
 	},
 	"event": [
