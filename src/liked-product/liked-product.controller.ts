@@ -33,7 +33,6 @@ export class LikedProductController {
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   delete(@Param('id') productId: string, @Req() req) {
-    console.log('ეშვება');
     return this.likedProductsService.delete(req.user.id, productId);
   }
 }
