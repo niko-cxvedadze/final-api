@@ -75,7 +75,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/product",
+							"raw": "http://localhost:3000/product?onlySales=true",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -114,6 +114,10 @@
 									"key": "productName",
 									"value": "Iphone",
 									"disabled": true
+								},
+								{
+									"key": "onlySales",
+									"value": "true"
 								}
 							]
 						}
@@ -127,7 +131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\":\"Samsung\",\n    \"category_name\":\"სმარტფონები\",\n    \"description\":\"this is iphone 12 description\",\n    \"image\":\"\",\n    \"price\":1200\n}",
+							"raw": "{\n    \"title\":\"Samsung\",\n    \"category_name\":\"სმარტფონები\",\n    \"description\":\"this is iphone 12 description\",\n    \"image\":\"\",\n    \"salePrice\": null,\n    \"price\": 1200\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,6 +175,24 @@
 						"method": "DELETE",
 						"header": [],
 						"url": "http://localhost:3000/product/delete-all"
+					},
+					"response": []
+				},
+				{
+					"name": "პროდუქტის განახლება",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"086087aa-30a1-42fd-b0f5-8d213dbfa4f6\",\n    \"salePrice\":1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/product"
 					},
 					"response": []
 				}
