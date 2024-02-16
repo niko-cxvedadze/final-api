@@ -26,7 +26,14 @@ export class ProductService {
 
   async update(body: UpdateProductDto) {
     const product = await this.findOne(body.id);
-    const updatedProduct = { ...product, ...body };
+
+    const { image, ...productData } = body;
+    const updatedProduct = { ...product, ...productData };
+
+    if (image) {
+      updatedProduct.image = 'data:image/png;base64,' + image;
+    }
+
     await this.productRepository.update(product.id, updatedProduct);
     return updatedProduct;
   }
