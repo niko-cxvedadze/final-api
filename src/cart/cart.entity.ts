@@ -12,6 +12,9 @@ export class CartProduct extends BaseEntity {
   @Column()
   user_id: string;
 
+  @Column({ default: 1 })
+  count: number;
+
   @ManyToOne(() => Users)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: Users;

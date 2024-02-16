@@ -13,10 +13,23 @@ export class CartService {
   ) {}
 
   async create(userId: string, body: CreateCartProduct) {
-    const cartProduct = this.cartProductRepository.create({
-      user_id: userId,
-      product_id: body.product_id,
+    let cartProduct = await this.cartProductRepository.findOne({
+      where: {
+        user_id: userId,
+        product_id: body.product_id,
+      },
     });
+
+    if (cartProduct) {
+      cartProduct.count += 1;
+    } else {
+      cartProduct = this.cartProductRepository.create({
+        user_id: userId,
+        product_id: body.product_id,
+        count: 1,
+      });
+    }
+
     return await this.cartProductRepository.save(cartProduct);
   }
 
@@ -39,8 +52,18 @@ export class CartService {
     return cartProducts;
   }
 
-  async delete(userId: string, productId: string) {
-    const cartProduct = await this.findOne(userId, productId);
-    return await this.cartProductRepository.remove(cartProduct);
+  async delete(userId: string, productId: string, removeAll: boolean = false) {
+    let cartProduct = await this.findOne(userId, productId);
+
+    if (removeAll || cartProduct.count === 1) {
+      // If removeAll is true or there's only one item left, remove the entire record
+      await this.cartProductRepository.remove(cartProduct);
+    } else {
+      // If removeAll is false and there's more than one item, decrease the count by one
+      cartProduct.count -= 1;
+      await this.cartProductRepository.save(cartProduct);
+    }
+
+    return cartProduct;
   }
 }
