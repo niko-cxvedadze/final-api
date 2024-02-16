@@ -16,13 +16,19 @@ export class ProductCategoryService {
   ) {}
 
   async create(body: CreateProductCategoryDto) {
-    const productCategory = this.productCategoryRepository.create({ ...body });
+    const productCategory = this.productCategoryRepository.create({
+      ...body,
+      image: 'data:image/png;base64,' + body.image,
+    });
     return await this.productCategoryRepository.save(productCategory);
   }
 
   async createMany(body: CreateManyProductCategoryDto) {
     const productCategories = body.categories.map((category) =>
-      this.productCategoryRepository.create({ ...category }),
+      this.productCategoryRepository.create({
+        ...category,
+        image: 'data:image/png;base64,' + category.image,
+      }),
     );
     return await this.productCategoryRepository.save(productCategories);
   }

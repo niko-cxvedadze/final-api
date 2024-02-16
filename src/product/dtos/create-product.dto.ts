@@ -41,7 +41,6 @@ export class UpdateProductDto {
   salePrice: number;
 
   @IsBase64()
-  @IsOptional()
   image: string;
 
   @IsNumber()

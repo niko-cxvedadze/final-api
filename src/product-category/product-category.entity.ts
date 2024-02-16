@@ -6,4 +6,7 @@ import { BaseEntity } from '../shared/base-entity';
 export class ProductCategory extends BaseEntity {
   @Column()
   name: string;
+
+  @Column({ type: 'text' })
+  image: string;
 }
