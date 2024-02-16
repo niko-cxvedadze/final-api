@@ -10,12 +10,14 @@ import { Product } from './product/product.entity';
 import { CartProduct } from './cart/cart.entity';
 import { LikedProduct } from './liked-product/liked-product.entity';
 import { ProductCategory } from './product-category/product-category.entity';
+import { Purchase } from './purchase/purchase.entity';
 
 import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { ProductModule } from './product/product.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
 import { LikedProductModule } from './liked-product/liked-product.module';
+import { PurchaseModule } from './purchase/purchase.module';
 
 @Module({
   imports: [
@@ -26,7 +28,14 @@ import { LikedProductModule } from './liked-product/liked-product.module';
       username: 'root',
       password: 'root',
       database: 'final',
-      entities: [Users, ProductCategory, Product, LikedProduct, CartProduct],
+      entities: [
+        Users,
+        ProductCategory,
+        Product,
+        LikedProduct,
+        CartProduct,
+        Purchase,
+      ],
       synchronize: true,
       logging: true,
     }),
@@ -36,6 +45,7 @@ import { LikedProductModule } from './liked-product/liked-product.module';
     ProductCategoryModule,
     LikedProductModule,
     CartModule,
+    PurchaseModule,
   ],
   providers: [AppService],
   controllers: [AppController],
