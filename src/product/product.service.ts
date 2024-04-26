@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -99,10 +99,31 @@ export class ProductService {
 
     return product;
   }
-  async delete(id: string) {
-    const product = await this.findOne(id);
+  async delete(ids: string[]) {
+    // Check if any IDs were provided
+    if (!ids || ids.length === 0) {
+      throw new NotFoundException(
+        'Please provide an array of product IDs to delete.',
+      );
+    }
 
-    return await this.productRepository.remove(product);
+    // Find products by IDs
+    const productsToDelete = await this.productRepository.find({
+      where: { id: In(ids) },
+    });
+
+    // Check if all products were found
+    if (productsToDelete.length !== ids.length) {
+      throw new NotFoundException(
+        'Some products with provided IDs were not found.',
+      );
+    }
+
+    // Delete products
+    await this.productRepository.remove(productsToDelete);
+
+    // Return success message (optional)
+    return { message: 'Products deleted successfully.' };
   }
 
   async deleteAll() {
