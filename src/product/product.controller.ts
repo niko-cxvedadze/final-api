@@ -70,10 +70,10 @@ export class ProductController {
     return this.productService.deleteAll();
   }
 
-  @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  delete(@Param('id') id: string) {
-    return this.productService.delete(id);
+  @Delete()
+  delete(@Body('ids') ids: string[]) {
+    return this.productService.delete(ids);
   }
 
   @UseGuards(JwtAuthGuard)
