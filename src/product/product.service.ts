@@ -71,11 +71,17 @@ export class ProductService {
     }
 
     if (minPrice) {
-      query.andWhere('product.price >= :minPrice', { minPrice });
+      query.andWhere(
+        'CASE WHEN product.salePrice IS NOT NULL THEN product.salePrice ELSE product.price END >= :minPrice',
+        { minPrice },
+      );
     }
 
     if (maxPrice) {
-      query.andWhere('product.price <= :maxPrice', { maxPrice });
+      query.andWhere(
+        'CASE WHEN product.salePrice IS NOT NULL THEN product.salePrice ELSE product.price END <= :maxPrice',
+        { maxPrice },
+      );
     }
 
     if (onlySales) {
