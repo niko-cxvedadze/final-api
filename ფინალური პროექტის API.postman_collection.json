@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1734070d-f1aa-4466-862b-9840f217dee0",
+		"_postman_id": "0396e3f2-1607-4f75-a707-ae26b2802124",
 		"name": "ფინალური პროექტის API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31975327"
@@ -160,7 +160,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/product?page=1&pageSize=25",
+							"raw": "http://localhost:3000/product?page=1&pageSize=25&minPrice=150&maxPrice=330&onlySales=true",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -185,13 +185,11 @@
 								},
 								{
 									"key": "minPrice",
-									"value": "",
-									"disabled": true
+									"value": "150"
 								},
 								{
 									"key": "maxPrice",
-									"value": "",
-									"disabled": true
+									"value": "330"
 								},
 								{
 									"key": "productName",
@@ -200,8 +198,7 @@
 								},
 								{
 									"key": "onlySales",
-									"value": "true",
-									"disabled": true
+									"value": "true"
 								}
 							]
 						}
@@ -272,7 +269,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ids\": [\r\n        \"ca8947b7-d24d-4795-b3a9-e9cd686543d8\",\r\n        \"6f15bdeb-cf5d-4220-a794-2edecb932796\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"ids\": [\r\n        \"54c07b94-4614-4695-88fd-35a5e548b2e8\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -372,7 +369,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"სმარტფონები\"\n}",
+							"raw": "{\n    \"name\":\"სმარტფონები\",\n    \"image\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -428,7 +425,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/product-category/8e2215f2-4053-43f6-ad0d-18f321824e42",
+							"raw": "http://localhost:3000/product-category/70b3d52c-1cb9-4104-8a2b-51c08be31c13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -436,7 +433,7 @@
 							"port": "3000",
 							"path": [
 								"product-category",
-								"8e2215f2-4053-43f6-ad0d-18f321824e42"
+								"70b3d52c-1cb9-4104-8a2b-51c08be31c13"
 							]
 						}
 					},
@@ -512,7 +509,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cart/8bf0d227-4a23-4cf7-8e61-28d0ee7dc5dd?removeAll=true",
+							"raw": "http://localhost:3000/cart/11a27d09-8d11-41d8-a90d-d2025150eaee",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -520,13 +517,27 @@
 							"port": "3000",
 							"path": [
 								"cart",
-								"8bf0d227-4a23-4cf7-8e61-28d0ee7dc5dd"
+								"11a27d09-8d11-41d8-a90d-d2025150eaee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "კალათის გასუფთავება",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cart/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
 							],
-							"query": [
-								{
-									"key": "removeAll",
-									"value": "true"
-								}
+							"port": "3000",
+							"path": [
+								"cart",
+								"clear"
 							]
 						}
 					},
@@ -539,7 +550,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\":\"276b9043-44ee-4455-af45-6608a64b863e\"\n}\n",
+							"raw": "{\n    \"product_id\":\"e6e81534-96f1-47d5-a105-422ab57e709b\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -645,7 +656,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"totalPrice\":1200,\n    \"totalItems\":3\n}",
+							"raw": "{\n    \"totalPrice\":100,\n    \"totalItems\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -672,7 +683,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/purchases/78f41426-982a-46db-95a2-ab1025aa79a1",
+							"raw": "http://localhost:3000/purchases/2c59153b-6a8c-42ee-96bc-632b6d8f96f3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -680,7 +691,7 @@
 							"port": "3000",
 							"path": [
 								"purchases",
-								"78f41426-982a-46db-95a2-ab1025aa79a1"
+								"2c59153b-6a8c-42ee-96bc-632b6d8f96f3"
 							]
 						}
 					},
@@ -733,7 +744,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6ImI3NTMzOWY4LTNhMjAtNGY4MS05NGVkLWRmNTJkMjdmZmZkOCIsImZpcnN0X25hbWUiOiJnaW9yZ2kiLCJsYXN0X25hbWUiOiJnaW9yZ2FkemUiLCJwaG9uZV9udW1iZXIiOiI1NTUxMTEzMzMiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MTQxNDQ5MDYsImV4cCI6MTcxNDE0ODUwNn0.g3aQkKVo_izfsDVumzziNZRoRnRF2-skDYKmOPnrTKA",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6IjkyOWU3MGFhLWYwYWYtNGQxYS04OGEyLTY1ZjUwNThiMDAzMCIsImZpcnN0X25hbWUiOiJnaW9yZ2kiLCJsYXN0X25hbWUiOiJnaW9yZ2FkemUiLCJwaG9uZV9udW1iZXIiOiI1NTUxMTEzMzMiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MTQyOTQ3MjcsImV4cCI6MTcxNDI5ODMyN30.cribrKUv4mqngyP2VfhzHK3Ox-oKhHmGWlOf89LLZEE",
 				"type": "string"
 			}
 		]
