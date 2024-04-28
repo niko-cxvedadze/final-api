@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a2653540-c7b5-4646-af23-af57e7c03ee8",
+		"_postman_id": "0396e3f2-1607-4f75-a707-ae26b2802124",
 		"name": "ფინალური პროექტის API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "24868076",
-		"_collection_link": "https://martian-shadow-368424.postman.co/workspace/Digital-Final-Project~f3b7095c-8f61-4e3a-becc-68be83a2edcc/collection/24868076-a2653540-c7b5-4646-af23-af57e7c03ee8?action=share&source=collection_link&creator=24868076"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31975327"
 	},
 	"item": [
 		{
@@ -24,7 +23,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/login"
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -35,14 +45,25 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\":\"giorgi\",\n    \"last_name\":\"giorgadze\",\n    \"email\":\"giorgi@gmail.com\",\n    \"password\":\"12345678\",\n    \"phone_number\":\"555111333\"\n}",
+							"raw": "{\n    \"first_name\":\"giorgi1\",\n    \"last_name\":\"giorgadze\",\n    \"email\":\"giorgi@gmail.com\",\n    \"password\":\"12345678\",\n    \"phone_number\":\"555111333\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/register"
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -60,7 +81,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/auth/update-tokens"
+						"url": {
+							"raw": "http://localhost:3000/auth/update-tokens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"update-tokens"
+							]
+						}
 					},
 					"response": []
 				}
@@ -74,7 +106,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/user/current-user"
+						"url": {
+							"raw": "http://localhost:3000/user/current-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"current-user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -92,7 +135,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/user"
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
 					},
 					"response": []
 				}
@@ -107,7 +160,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/product?page=1&pageSize=25",
+							"raw": "http://localhost:3000/product?page=1&pageSize=25&productName=iphonE",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,18 +185,17 @@
 								},
 								{
 									"key": "minPrice",
-									"value": "",
+									"value": "150",
 									"disabled": true
 								},
 								{
 									"key": "maxPrice",
-									"value": "",
+									"value": "330",
 									"disabled": true
 								},
 								{
 									"key": "productName",
-									"value": "Iphone",
-									"disabled": true
+									"value": "iphonE"
 								},
 								{
 									"key": "onlySales",
@@ -169,7 +221,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/product"
+						"url": {
+							"raw": "http://localhost:3000/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product"
+							]
+						}
 					},
 					"response": []
 				},
@@ -187,7 +249,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/product/many"
+						"url": {
+							"raw": "http://localhost:3000/product/many",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"many"
+							]
+						}
 					},
 					"response": []
 				},
@@ -196,7 +269,26 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/product/50503186-8355-4846-9138-fd2c860e15e9"
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": [\r\n        \"54c07b94-4614-4695-88fd-35a5e548b2e8\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product"
+							]
+						}
 					},
 					"response": []
 				},
@@ -205,7 +297,18 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/product/delete-all"
+						"url": {
+							"raw": "http://localhost:3000/product/delete-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"delete-all"
+							]
+						}
 					},
 					"response": []
 				},
@@ -223,7 +326,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/product"
+						"url": {
+							"raw": "http://localhost:3000/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product"
+							]
+						}
 					},
 					"response": []
 				}
@@ -237,7 +350,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/product-category"
+						"url": {
+							"raw": "http://localhost:3000/product-category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product-category"
+							]
+						}
 					},
 					"response": []
 				},
@@ -248,14 +371,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"სმარტფონები\"\n}",
+							"raw": "{\n    \"name\":\"სმარტფონები\",\n    \"image\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/product-category"
+						"url": {
+							"raw": "http://localhost:3000/product-category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product-category"
+							]
+						}
 					},
 					"response": []
 				},
@@ -273,7 +406,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/product-category/many"
+						"url": {
+							"raw": "http://localhost:3000/product-category/many",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product-category",
+								"many"
+							]
+						}
 					},
 					"response": []
 				},
@@ -282,7 +426,18 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/product-category/8e2215f2-4053-43f6-ad0d-18f321824e42"
+						"url": {
+							"raw": "http://localhost:3000/product-category/70b3d52c-1cb9-4104-8a2b-51c08be31c13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product-category",
+								"70b3d52c-1cb9-4104-8a2b-51c08be31c13"
+							]
+						}
 					},
 					"response": []
 				},
@@ -291,7 +446,18 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/product-category/delete-all"
+						"url": {
+							"raw": "http://localhost:3000/product-category/delete-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product-category",
+								"delete-all"
+							]
+						}
 					},
 					"response": []
 				}
@@ -325,7 +491,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/cart"
+						"url": {
+							"raw": "http://localhost:3000/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cart"
+							]
+						}
 					},
 					"response": []
 				},
@@ -335,7 +511,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cart/8bf0d227-4a23-4cf7-8e61-28d0ee7dc5dd?removeAll=true",
+							"raw": "http://localhost:3000/cart/ac942c95-740f-4445-8067-a0fd59278961",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -343,13 +519,27 @@
 							"port": "3000",
 							"path": [
 								"cart",
-								"8bf0d227-4a23-4cf7-8e61-28d0ee7dc5dd"
+								"ac942c95-740f-4445-8067-a0fd59278961"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "კალათის გასუფთავება",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/cart/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
 							],
-							"query": [
-								{
-									"key": "removeAll",
-									"value": "true"
-								}
+							"port": "3000",
+							"path": [
+								"cart",
+								"clear"
 							]
 						}
 					},
@@ -362,14 +552,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\":\"276b9043-44ee-4455-af45-6608a64b863e\"\n}\n",
+							"raw": "{\n    \"product_id\":\"50d08821-4dd6-4928-a20a-fc60f011116f\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/cart"
+						"url": {
+							"raw": "http://localhost:3000/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cart"
+							]
+						}
 					},
 					"response": []
 				}
@@ -383,7 +583,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/liked-products"
+						"url": {
+							"raw": "http://localhost:3000/liked-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"liked-products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -401,7 +611,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/liked-products"
+						"url": {
+							"raw": "http://localhost:3000/liked-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"liked-products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -410,7 +630,18 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/liked-products/5128c5b4-ed91-4871-8faf-541d6c3e39a5"
+						"url": {
+							"raw": "http://localhost:3000/liked-products/5128c5b4-ed91-4871-8faf-541d6c3e39a5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"liked-products",
+								"5128c5b4-ed91-4871-8faf-541d6c3e39a5"
+							]
+						}
 					},
 					"response": []
 				}
@@ -427,14 +658,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"totalPrice\":1200,\n    \"totalItems\":3\n}",
+							"raw": "{\n    \"totalPrice\":100,\n    \"totalItems\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/purchases"
+						"url": {
+							"raw": "http://localhost:3000/purchases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"purchases"
+							]
+						}
 					},
 					"response": []
 				},
@@ -443,7 +684,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/purchases/78f41426-982a-46db-95a2-ab1025aa79a1"
+						"url": {
+							"raw": "http://localhost:3000/purchases/a49ecb14-2ff8-4aeb-831a-f46ba31212f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"purchases",
+								"a49ecb14-2ff8-4aeb-831a-f46ba31212f5"
+							]
+						}
 					},
 					"response": []
 				},
@@ -452,7 +704,18 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:3000/purchases/01b23d89-72a7-4e1c-81e9-937f57417cf4"
+						"url": {
+							"raw": "http://localhost:3000/purchases/a49ecb14-2ff8-4aeb-831a-f46ba31212f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"purchases",
+								"a49ecb14-2ff8-4aeb-831a-f46ba31212f5"
+							]
+						}
 					},
 					"response": []
 				},
@@ -461,7 +724,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/purchases"
+						"url": {
+							"raw": "http://localhost:3000/purchases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"purchases"
+							]
+						}
 					},
 					"response": []
 				}
@@ -470,9 +743,13 @@
 	],
 	"auth": {
 		"type": "bearer",
-		"bearer": {
-			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6IjVmZTY3YWZlLTFlNjYtNGM3Zi1iYWFlLTVjMjJlNjlmZTFmNyIsImZpcnN0X25hbWUiOiJnaW9yZ2kiLCJsYXN0X25hbWUiOiJnaW9yZ2FkemUiLCJwaG9uZV9udW1iZXIiOiI1NTUxMTEzMzMiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDgxMDY2MzYsImV4cCI6MTcwODExMDIzNn0.l3LdiAXCKNhayU7mxvVKJ5e8_Ot4s5829g8zi6fwtBo"
-		}
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6ImQxNTI3N2NiLWUyNzItNDNlNS04MzdkLWJmNjIxNGRjMDA2OSIsImZpcnN0X25hbWUiOiJnaW9yZ2kxIiwibGFzdF9uYW1lIjoiZ2lvcmdhZHplIiwicGhvbmVfbnVtYmVyIjoiNTU1MTExMzMzIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzE0MzA0NTUyLCJleHAiOjE3MTQzMDgxNTJ9.3urQdAl0NzGMcCNNE0h6RnkoLq5ELpb4KZ6qb84OoQI",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{

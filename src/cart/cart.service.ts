@@ -52,18 +52,26 @@ export class CartService {
     return cartProducts;
   }
 
-  async delete(userId: string, productId: string, removeAll: boolean = false) {
+  async delete(userId: string, productId?: string) {
     let cartProduct = await this.findOne(userId, productId);
 
-    if (removeAll || cartProduct.count === 1) {
-      // If removeAll is true or there's only one item left, remove the entire record
+    if (cartProduct.count === 1) {
+      // If there's only one item left, remove the entire record
       await this.cartProductRepository.remove(cartProduct);
     } else {
-      // If removeAll is false and there's more than one item, decrease the count by one
+      // If there's more than one item, decrease the count by one
       cartProduct.count -= 1;
       await this.cartProductRepository.save(cartProduct);
     }
 
     return cartProduct;
+  }
+
+  async clear(userId: string) {
+    const cartProducts = await this.findAll(userId);
+
+    await this.cartProductRepository.remove(cartProducts);
+
+    return cartProducts;
   }
 }

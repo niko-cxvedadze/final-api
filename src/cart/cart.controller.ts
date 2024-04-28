@@ -7,7 +7,6 @@ import {
   Delete,
   Body,
   Param,
-  Query,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
@@ -32,14 +31,15 @@ export class CartController {
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  delete(
-    @Param('id') productId: string,
-    @Req() req,
-    @Query('removeAll') removeAll?: boolean,
-  ) {
+  delete(@Req() req, @Param('id') productId?: string) {
     const userId = req.user.id;
-    const removeAllFlag = !!removeAll;
 
-    return this.cartService.delete(userId, productId, removeAllFlag);
+    return this.cartService.delete(userId, productId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('clear')
+  clear(@Req() req) {
+    return this.cartService.clear(req.user.id);
   }
 }

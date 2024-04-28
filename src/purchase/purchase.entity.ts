@@ -8,4 +8,7 @@ export class Purchase extends BaseEntity {
 
   @Column()
   totalItems: number;
+
+  @Column()
+  user_id: string;
 }
