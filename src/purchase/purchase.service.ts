@@ -17,11 +17,13 @@ export class PurchaseService {
     createPurchaseDto: CreatePurchaseDto,
     userId: string,
   ): Promise<Purchase> {
+    console.log('🚀 ~ PurchaseService ~ userId:', userId);
     const { totalPrice, totalItems } = createPurchaseDto;
 
     const purchase = this.purchaseRepository.create({
       totalPrice,
       totalItems,
+      user_id: userId,
     });
 
     const purchases = await this.purchaseRepository.save(purchase);
@@ -32,8 +34,8 @@ export class PurchaseService {
     return purchases;
   }
 
-  async getAllPurchases(): Promise<Purchase[]> {
-    return await this.purchaseRepository.find();
+  async getAllPurchases(userId: string): Promise<Purchase[]> {
+    return await this.purchaseRepository.find({ where: { user_id: userId } });
   }
 
   async getPurchaseById(id: string): Promise<Purchase> {

@@ -25,20 +25,23 @@ export class PurchaseController {
   ): Promise<Purchase> {
     return await this.purchaseService.createPurchase(
       createPurchaseDto,
-      req.user_id,
+      req.user.id,
     );
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
-  async getAllPurchases(): Promise<Purchase[]> {
-    return await this.purchaseService.getAllPurchases();
+  async getAllPurchases(@Req() req): Promise<Purchase[]> {
+    return await this.purchaseService.getAllPurchases(req.user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getPurchaseById(@Param('id') id: string): Promise<Purchase> {
     return await this.purchaseService.getPurchaseById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async deletePurchase(@Param('id') id: string): Promise<Purchase> {
     return await this.purchaseService.deletePurchase(id);
