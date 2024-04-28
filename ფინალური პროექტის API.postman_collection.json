@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\":\"giorgi\",\n    \"last_name\":\"giorgadze\",\n    \"email\":\"giorgi@gmail.com\",\n    \"password\":\"12345678\",\n    \"phone_number\":\"555111333\"\n}",
+							"raw": "{\n    \"first_name\":\"giorgi1\",\n    \"last_name\":\"giorgadze\",\n    \"email\":\"giorgi@gmail.com\",\n    \"password\":\"12345678\",\n    \"phone_number\":\"555111333\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -511,7 +511,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cart/11a27d09-8d11-41d8-a90d-d2025150eaee",
+							"raw": "http://localhost:3000/cart/ac942c95-740f-4445-8067-a0fd59278961",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -519,7 +519,7 @@
 							"port": "3000",
 							"path": [
 								"cart",
-								"11a27d09-8d11-41d8-a90d-d2025150eaee"
+								"ac942c95-740f-4445-8067-a0fd59278961"
 							]
 						}
 					},
@@ -552,7 +552,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\":\"e6e81534-96f1-47d5-a105-422ab57e709b\"\n}\n",
+							"raw": "{\n    \"product_id\":\"50d08821-4dd6-4928-a20a-fc60f011116f\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -685,7 +685,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/purchases/2c59153b-6a8c-42ee-96bc-632b6d8f96f3",
+							"raw": "http://localhost:3000/purchases/a49ecb14-2ff8-4aeb-831a-f46ba31212f5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -693,7 +693,7 @@
 							"port": "3000",
 							"path": [
 								"purchases",
-								"2c59153b-6a8c-42ee-96bc-632b6d8f96f3"
+								"a49ecb14-2ff8-4aeb-831a-f46ba31212f5"
 							]
 						}
 					},
@@ -705,7 +705,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/purchases/01b23d89-72a7-4e1c-81e9-937f57417cf4",
+							"raw": "http://localhost:3000/purchases/a49ecb14-2ff8-4aeb-831a-f46ba31212f5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -713,7 +713,7 @@
 							"port": "3000",
 							"path": [
 								"purchases",
-								"01b23d89-72a7-4e1c-81e9-937f57417cf4"
+								"a49ecb14-2ff8-4aeb-831a-f46ba31212f5"
 							]
 						}
 					},
