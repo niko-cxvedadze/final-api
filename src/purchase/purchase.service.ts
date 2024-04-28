@@ -3,16 +3,19 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Purchase } from './purchase.entity';
 import { CreatePurchaseDto } from './dtos/purchase.dto';
+import { CartService } from 'src/cart/cart.service';
 
 @Injectable()
 export class PurchaseService {
   constructor(
     @InjectRepository(Purchase)
     private purchaseRepository: Repository<Purchase>,
+    private cartService: CartService,
   ) {}
 
   async createPurchase(
     createPurchaseDto: CreatePurchaseDto,
+    userId: string,
   ): Promise<Purchase> {
     const { totalPrice, totalItems } = createPurchaseDto;
 
@@ -21,7 +24,12 @@ export class PurchaseService {
       totalItems,
     });
 
-    return await this.purchaseRepository.save(purchase);
+    const purchases = await this.purchaseRepository.save(purchase);
+
+    // Clear the cart after the purchase
+    await this.cartService.clear(userId);
+
+    return purchases;
   }
 
   async getAllPurchases(): Promise<Purchase[]> {
