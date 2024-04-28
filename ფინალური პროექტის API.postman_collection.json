@@ -160,7 +160,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/product?page=1&pageSize=25&minPrice=150&maxPrice=330&onlySales=true",
+							"raw": "http://localhost:3000/product?page=1&pageSize=25&productName=iphonE",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -185,20 +185,22 @@
 								},
 								{
 									"key": "minPrice",
-									"value": "150"
-								},
-								{
-									"key": "maxPrice",
-									"value": "330"
-								},
-								{
-									"key": "productName",
-									"value": "Iphone",
+									"value": "150",
 									"disabled": true
 								},
 								{
+									"key": "maxPrice",
+									"value": "330",
+									"disabled": true
+								},
+								{
+									"key": "productName",
+									"value": "iphonE"
+								},
+								{
 									"key": "onlySales",
-									"value": "true"
+									"value": "true",
+									"disabled": true
 								}
 							]
 						}
@@ -744,7 +746,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6IjkyOWU3MGFhLWYwYWYtNGQxYS04OGEyLTY1ZjUwNThiMDAzMCIsImZpcnN0X25hbWUiOiJnaW9yZ2kiLCJsYXN0X25hbWUiOiJnaW9yZ2FkemUiLCJwaG9uZV9udW1iZXIiOiI1NTUxMTEzMzMiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MTQyOTQ3MjcsImV4cCI6MTcxNDI5ODMyN30.cribrKUv4mqngyP2VfhzHK3Ox-oKhHmGWlOf89LLZEE",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6ImQxNTI3N2NiLWUyNzItNDNlNS04MzdkLWJmNjIxNGRjMDA2OSIsImZpcnN0X25hbWUiOiJnaW9yZ2kxIiwibGFzdF9uYW1lIjoiZ2lvcmdhZHplIiwicGhvbmVfbnVtYmVyIjoiNTU1MTExMzMzIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzE0MzA0NTUyLCJleHAiOjE3MTQzMDgxNTJ9.3urQdAl0NzGMcCNNE0h6RnkoLq5ELpb4KZ6qb84OoQI",
 				"type": "string"
 			}
 		]
