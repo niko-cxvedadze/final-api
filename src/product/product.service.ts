@@ -65,7 +65,7 @@ export class ProductService {
     }
 
     if (productName) {
-      query.andWhere('product.title LIKE :productName', {
+      query.andWhere('LOWER(product.title) LIKE :productName', {
         productName: `%${productName.toLowerCase()}%`,
       });
     }
