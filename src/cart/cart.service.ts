@@ -52,10 +52,10 @@ export class CartService {
     return cartProducts;
   }
 
-  async delete(userId: string, productId?: string) {
+  async delete(userId: string, productId?: string, removeAllFlag?: boolean) {
     let cartProduct = await this.findOne(userId, productId);
 
-    if (cartProduct.count === 1) {
+    if (removeAllFlag || cartProduct.count === 1) {
       // If there's only one item left, remove the entire record
       await this.cartProductRepository.remove(cartProduct);
     } else {

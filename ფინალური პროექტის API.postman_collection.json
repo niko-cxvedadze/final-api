@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0396e3f2-1607-4f75-a707-ae26b2802124",
+		"_postman_id": "6b779aaf-b97c-484d-82ab-6ef0c02493d4",
 		"name": "ფინალური პროექტის API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31975327"
@@ -202,6 +202,26 @@
 									"value": "true",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ერთი პროდუქტი",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/product/924b3e8d-1a4f-465e-a47a-607e559e1272",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"924b3e8d-1a4f-465e-a47a-607e559e1272"
 							]
 						}
 					},
@@ -511,7 +531,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/cart/ac942c95-740f-4445-8067-a0fd59278961",
+							"raw": "http://localhost:3000/cart/bca274ee-d962-4ce9-917c-e752aa55b2e8?removeAll=true",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -519,7 +539,13 @@
 							"port": "3000",
 							"path": [
 								"cart",
-								"ac942c95-740f-4445-8067-a0fd59278961"
+								"bca274ee-d962-4ce9-917c-e752aa55b2e8"
+							],
+							"query": [
+								{
+									"key": "removeAll",
+									"value": "true"
+								}
 							]
 						}
 					},
@@ -552,7 +578,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\":\"50d08821-4dd6-4928-a20a-fc60f011116f\"\n}\n",
+							"raw": "{\n    \"product_id\":\"26cfc6c7-7b6b-4d03-883f-23772973e700\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -746,7 +772,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6ImQxNTI3N2NiLWUyNzItNDNlNS04MzdkLWJmNjIxNGRjMDA2OSIsImZpcnN0X25hbWUiOiJnaW9yZ2kxIiwibGFzdF9uYW1lIjoiZ2lvcmdhZHplIiwicGhvbmVfbnVtYmVyIjoiNTU1MTExMzMzIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzE0MzA0NTUyLCJleHAiOjE3MTQzMDgxNTJ9.3urQdAl0NzGMcCNNE0h6RnkoLq5ELpb4KZ6qb84OoQI",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdpb3JnaUBnbWFpbC5jb20iLCJpZCI6IjFjZTNmYjExLTFiNGItNDk1Zi1iNzE2LTY2NjdhNzhiN2YwOSIsImZpcnN0X25hbWUiOiJnaW9yZ2kxIiwibGFzdF9uYW1lIjoiZ2lvcmdhZHplIiwicGhvbmVfbnVtYmVyIjoiNTU1MTExMzMzIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNzE2Mzc1OTIxLCJleHAiOjE3MTYzNzk1MjF9.67QsW7K2d_S3wDP1m9UF2K5_4DiCJ-C9ll0EA_W2QqM",
 				"type": "string"
 			}
 		]
