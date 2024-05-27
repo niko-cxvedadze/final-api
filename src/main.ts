@@ -6,6 +6,7 @@ import * as multer from 'multer';
 
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './shared/all-exceptions-filter';
+import { AuthService } from './auth/auth.service';
 
 config();
 
@@ -35,6 +36,8 @@ async function bootstrap() {
   const storage = multer.memoryStorage();
   const upload = multer({ storage });
   app.use(upload.single('image'));
+  const appService = app.get(AuthService);
+  appService.seedAdmin();
 
   await app.listen(3000);
 }

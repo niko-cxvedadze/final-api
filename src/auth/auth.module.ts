@@ -10,9 +10,12 @@ import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from '../users/users.module';
 
 import { jwtConstants } from './auth.constants';
+import { Users } from 'src/users/users.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Users]),
     UsersModule,
     PassportModule,
     JwtModule.register({

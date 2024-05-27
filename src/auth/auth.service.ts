@@ -5,16 +5,20 @@ import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 
 import { JwtUserPayload } from './auth.types';
 
-import { Users } from '../users/users.entity';
+import { UserRole_Enum, Users } from '../users/users.entity';
 import { UsersService } from '../users/users.service';
 
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateTokensDto } from './dto/update-tokens.dto';
 import { jwtConstants } from './auth.constants';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @InjectRepository(Users)
+    private usersRepository: Repository<Users>,
     private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
@@ -25,6 +29,26 @@ export class AuthService {
 
   async comparePassword(inputPassword: string, userPassword: string) {
     return await compare(inputPassword, userPassword);
+  }
+
+  async seedAdmin() {
+    try {
+      const admin = await this.usersService.findOne({ email: 'admin' });
+      if (admin) {
+        console.log('🚀 ~ Admin User Already Exists');
+      }
+    } catch (error) {
+      const hashedPassword = await this.hashPassword('admin123');
+      const AdminUser = new Users();
+      AdminUser.email = 'admin';
+      AdminUser.password = hashedPassword;
+      AdminUser.first_name = 'Admin';
+      AdminUser.last_name = 'Admin';
+      AdminUser.phone_number = '0000000000';
+      AdminUser.role = UserRole_Enum.ADMIN;
+      await this.usersRepository.save(AdminUser);
+      console.log('🚀 ~ Admin User Created');
+    }
   }
 
   async validateUser(email: string, password: string): Promise<any> {
