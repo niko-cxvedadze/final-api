@@ -17,7 +17,6 @@ export class PurchaseService {
     createPurchaseDto: CreatePurchaseDto,
     userId: string,
   ): Promise<Purchase> {
-    console.log('🚀 ~ PurchaseService ~ userId:', userId);
     const { totalPrice, totalItems } = createPurchaseDto;
 
     const purchase = this.purchaseRepository.create({
